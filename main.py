@@ -7,10 +7,14 @@
 
 import numpy as np
 import cv2
+import os
 import math
 import time
 import socket
 import subprocess
+from datetime import datetime
+
+os.makedirs('./imgs', exist_ok=True)
 
 TELLO_IP = '192.168.10.1'
 CMD_PORT = 8889
@@ -76,6 +80,10 @@ while True:
     if key == 27: # ESC
         tello.send('land')
         break
+    elif key == ord('p'):
+        dt = datetime.now()
+        file_name = "{}.png".format(dt.strftime('%Y%m%d%H%M'))
+        cv2.imwrite('./imgs/{}'.format(file_name), img)
     elif key == ord('t'):
         tello.send('takeoff')
     elif key == ord('l'):
@@ -88,4 +96,12 @@ while True:
         tello.send('right 20')
     elif key == ord('a'):
         tello.send('left 20')
+    elif key == ord('f'):
+        tello.send('flip f')
+    elif key == ord('v'):
+        tello.send('flip b')
+    elif key == ord('j'):
+        tello.send('cw 45')
+    elif key == ord('h'):
+        tello.send('ccw 45')
 

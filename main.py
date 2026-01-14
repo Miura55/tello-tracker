@@ -85,8 +85,8 @@ if __name__ == "__main__":
             break
         elif key == ord('p'):
             dt = datetime.now()
-            file_name = "{}.png".format(dt.strftime('%Y%m%d%H%M'))
-            cv2.imwrite('./imgs/{}'.format(file_name), img)
+            file_name = "./imgs/{}.png".format(dt.strftime('%Y%m%d%H%M'))
+            cv2.imwrite(file_name, img)
         elif key == ord('r'):
             is_recording = not is_recording
         elif key == ord('t'):
